@@ -1,0 +1,22 @@
+.content {
+  /* 十六进制通常是写几位 */
+  color: #12345678;
+  display: flex;
+  width: 1000px;
+  height: 500px;
+  border: 1px solid;
+  border-radius: 4px;
+  background: url("../image/ATT.png") no-repeat;
+}
+
+:fullscreen {
+  color: red;
+}
+
+.content {
+  user-select: none;
+  transform: scale(0.5);
+  transition: all 2s ease;
+}
+
+
