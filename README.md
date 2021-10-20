@@ -9,4 +9,4 @@
 7. webpack模块化原理解析、打包原理实现;
 8. 掌握其他流行构件工具:gulp、rollup、vite;
  
-9. 实现一个简易的打包器。
+9. 实现一个简易的打包器：具体位置在：webpack_simple/lib/simple_package.js
