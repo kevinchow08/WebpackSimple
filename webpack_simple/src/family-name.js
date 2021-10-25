@@ -1,1 +1,1 @@
-exports.name = 'kevin凯文';
+exports.name = '凯文';

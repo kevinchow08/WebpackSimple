@@ -21,9 +21,6 @@ const fileToModule = (path) => {
         code: `function(module, exports, require) {
             ${fileContent}
         }`
-        // code: `(export, require) => {
-        //     ${fileContent}
-        // }`
     }
 }
 // 单个文件转module测试：
@@ -124,14 +121,16 @@ const exec = (moduleId) => {
 // exec('../src/index.js')
 
 // 生成bundle文件。
-const createBundle = (modules) => {
+const createBundle = (modules, path) => {
     // 将modules依赖集合转成字符串形式，再写入文件
     let _modules = ''
     for (let moduleId in modules) {
         // _modules += `` + `${modules[moduleId]}`
         _modules += `\n"${moduleId}": ` + modules[moduleId] + ','
     }
-    const result = `var simple_modules = {${_modules}}
+    console.log(path.dirname.toString())
+    const result = `var path = ${path.toString()}
+var simple_modules = {${_modules}}
 var module_cache = {}
 function exec(moduleId) {
     if (module_cache[moduleId]) {
@@ -151,9 +150,9 @@ function exec(moduleId) {
 exec('../src/index.js')
 `
     // 写入文件
-    fs.mkdirSync('../dist')
-    fs.writeFileSync('../dist/bundle.js', result)
+    // fs.mkdirSync('../dist')
+    // fs.writeFileSync('../dist/bundle.js', result)
 }
 //  入参：入口文件相对路径
 // entry，input可通过配置文件获取
-createBundle(modules)
+createBundle(modules, path)
