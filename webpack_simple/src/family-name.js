@@ -1,1 +1,2 @@
-exports.name = '凯文';
+const familyName = 'zhou'
+export default familyName

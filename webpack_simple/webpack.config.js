@@ -47,6 +47,10 @@ module.exports = {
             }
         ]
     },
+    // Webpack 中进行代码分割的方式有三个:
+    // 多入口打包:配置 entry 加载多个入口文件
+    // 提取公用模块:optimization.splitChunks.chunks: all
+    // 动态导入:按需加载 | 预加载
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js'

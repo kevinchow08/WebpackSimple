@@ -10,3 +10,11 @@ element.innerHTML = message
 element.className = 'content'
 
 document.getElementById('app').appendChild(element)
+element.addEventListener('click', () => {
+    import('./async1').then(() => {
+        console.log('async1 加载完毕')
+    })
+    import('./async2').then(() => {
+        console.log('async2 加载完毕')
+    })
+})

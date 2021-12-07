@@ -1,5 +1,5 @@
 // 打包器核心代码：
-// 将项目中所有的文件生成一个大的模块集合
+// 将项目中所有的引用文件生成一个大的模块集合
 // 模块执行函数。遇到引入模块时，执行对应的函数。
 const fs = require("fs")
 const path = require("path")
@@ -104,6 +104,7 @@ const exec = (moduleId) => {
     const module = module_cache[moduleId] = {
         exports: {}
     }
+    // 对应webpack_require
     const simple_require = (filename) => {
         const dirname = path.dirname(moduleId)
         const execPath = path.join(dirname, filename)
@@ -155,4 +156,4 @@ exec('../src/index.js')
 }
 //  入参：入口文件相对路径
 // entry，input可通过配置文件获取
-createBundle(modules, path)
+createBundle(modules)
