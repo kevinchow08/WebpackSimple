@@ -30,7 +30,7 @@ module.exports = {
 
                 // 多个loader的使用规则：
                 // 最后的一个loader，第一个被调用，它将接受文件最原始的内容
-                // 第一个loader，最后一个被调用，它将接收最终的javascript文件和可选的sourceMap文件
+                // 第一个loader，最后一个被调用，它将接收最终的javascript代码和可选的sourceMap文件
                 // 中间的loader，只接收上一个loader返回的文件内容
                 use: ['style-loader', 'css-loader']
             },

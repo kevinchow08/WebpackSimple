@@ -1,5 +1,6 @@
 module.exports = function (content) {
     console.log('此处开始处理css模块代码')
+    console.log(content)
     // content此时大概率是对象形式，所以通过JSON.stringify来转换
     return `
         var str = ${JSON.stringify(content)}

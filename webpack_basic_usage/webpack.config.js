@@ -3,6 +3,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
                         presets: [['@babel/preset-env', {
                             // 有三个参数可选：
                             // entry: 需要在入口文件引入 import '@babel/polyfill'
-                            // usage: 不需要import，就可以实现按需使用polyfill，但要安装
+                            // usage: 不需要import，就可以实现按需使用polyfill，但要安装core-js
                             // false: 不使用按需使用polyfill，导致打包后的文件体积过大。
                             useBuiltIns: 'usage',
                             // polyfill依赖core-js，指定core-js的版本
@@ -95,6 +96,8 @@ module.exports = {
             //         }
             //     }
             // }
+            // file-loader: 讲用到的图片复制到dist目录下，过滤掉不用的图片
+            // url-loader: 讲小于指定大小的图片转换成base64，超过指定大小的图片依然使用file-loader来进行复制
         ]
     },
     plugins: [
@@ -102,6 +105,8 @@ module.exports = {
           // 生成单独css文件位置路径
           filename: './css/[name].css'
       }),
+        // 执行 webpack，再检查 dist 文件夹。如果一切顺利，你现在应该不会再看到旧的文件，只有构建后生成的文件
+      new CleanWebpackPlugin(['dist']),
         // 用来创建html文件，创建后的文件自动引入打包后的所有资源文件js，css
       new HtmlWebpackPlugin({
         template: './public/index.html'
