@@ -7,7 +7,7 @@ const escodegen = require('escodegen')
 
 const program = 'let a = 1'
 const AST = esprima.parseScript(program)
-console.log(AST)
+console.log(AST.body[0].declarations)
 
 let indent = 0
 const padding = () => {
@@ -18,6 +18,7 @@ estraverse.traverse(AST, {
     enter: (node) => {
         console.log(padding() + node.type + '进入')
         if (node.type === 'VariableDeclarator' && node.id) {
+            console.log(node)
             node.id.name = 'b'
         }
         indent += 2

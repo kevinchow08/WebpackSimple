@@ -22,6 +22,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
+                // loader 本质上的实现是一个函数
                 // 但要注意，webpack规定，loader要符合单一功能原则：
                 // 也就是loader只能实现一个功能。
                 // 比如less-loader用来处理less文件，css-loader用来处理css文件，style-loader用来将样式插入到style标签中，这些功能虽然可以放到一个loader中实现。
@@ -29,8 +30,8 @@ module.exports = {
                 // use: 'process-css'
 
                 // 多个loader的使用规则：
-                // 最后的一个loader，第一个被调用，它将接受文件最原始的内容
-                // 第一个loader，最后一个被调用，它将接收最终的javascript代码和可选的sourceMap文件
+                // 最后的一个loader，第一个被调用，它将接受文件最原始的内容(可能是代码，也可能是二进制文件，用 buffer 处理)
+                // 第一个loader，最后一个被调用，它将接收最终的javascript文件和可选的sourceMap文件
                 // 中间的loader，只接收上一个loader返回的文件内容
                 use: ['style-loader', 'css-loader']
             },
